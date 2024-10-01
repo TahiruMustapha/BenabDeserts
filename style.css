@@ -1,0 +1,113 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: hsl(13, 31%, 94%);
+  font-family: "Red Hat Text", sans-serif;
+}
+.heroContainer {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+   width: 85%; 
+  margin: 0 auto; 
+}
+.desertsContainer {
+  flex: 2;
+}
+.cartsContainer {
+  /* width: 100%; */
+  flex: 1;
+  /* background-color: green; */
+  height: fit-content;
+  margin-right: 2rem;
+}
+.cartsContainerBox {
+  background-color: #fff;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 2px 1rem;
+}
+.cartSatus {
+  font-weight: 700;
+  color: hsl(14, 86%, 42%);
+}
+.emptyCartBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.emptyCartBox p {
+  font-size: small;
+  color: hsl(12, 20%, 44%);
+  font-weight: 600;
+}
+.emptyCartBox img{
+  object-fit: cover;
+}
+.desertsBox {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.desertCard {
+  width: 16rem;
+  height: fit-content;
+  position: relative;
+  margin-right: 20px;
+  cursor: pointer;
+}
+ /* .desertsBoxElContent{
+  width: 16rem;
+  height: fit-content;
+  position: relative;
+  margin-right: 20px;
+  cursor: pointer;
+ } */
+.desertCard img {
+  max-width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.desert-data {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.desert-data span:nth-child(1) {
+  font-size: 16px;
+  color: hsl(7, 20%, 60%);
+  font-size: small;
+}
+.desert-data span:nth-child(2) {
+  font-weight: 600;
+}
+.desert-data span:nth-child(3) {
+  color: hsl(14, 86%, 42%);
+  font-weight: 500;
+}
+.addToCart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-weight: 600;
+  position: absolute;
+  top: 59%;
+  left: 14.5%;
+  cursor: pointer;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 25px;
+  width: 70%;
+  border: 1px solid hsl(7, 20%, 60%);
+}
+.addToCart:hover{
+  border: 1px solid hsl(14, 86%, 42%);
+}
