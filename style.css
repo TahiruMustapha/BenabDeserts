@@ -9,8 +9,8 @@ body {
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-   width: 85%; 
-  margin: 0 auto; 
+  width: 85%;
+  margin: 0 auto;
 }
 .desertsContainer {
   flex: 2;
@@ -35,24 +35,30 @@ body {
   color: hsl(14, 86%, 42%);
 }
 .emptyCartBox {
+  display: none;
+}
+.emptyCartBox div {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.emptyCartBox p {
+.emptyCartBox div p {
   font-size: small;
   color: hsl(12, 20%, 44%);
   font-weight: 600;
 }
-.emptyCartBox img{
+.emptyCartBox div img {
   object-fit: cover;
 }
 .desertsBox {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* display: flex;
+  flex-wrap: wrap; */
 }
 .desertCard {
   width: 16rem;
@@ -61,7 +67,7 @@ body {
   margin-right: 20px;
   cursor: pointer;
 }
- /* .desertsBoxElContent{
+/* .desertsBoxElContent{
   width: 16rem;
   height: fit-content;
   position: relative;
@@ -108,6 +114,61 @@ body {
   width: 70%;
   border: 1px solid hsl(7, 20%, 60%);
 }
-.addToCart:hover{
+.addToCart:hover {
   border: 1px solid hsl(14, 86%, 42%);
+}
+
+.cart {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+.productName {
+  margin-bottom: -10px;
+  font-weight: 600;
+  font-size: 16px;
+  color: hsl(14, 65%, 9%);
+}
+.cartContent {
+  margin-top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid hsl(13, 31%, 94%);
+}
+.closeIcon {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid hsl(7, 20%, 60%);
+  border-radius: 50%;
+}
+.cartContent div {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.count {
+  font-size: small;
+  font-weight: 700;
+  color: hsl(14, 86%, 42%);
+}
+.cartContent div p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cartContent div p span:nth-child(1) {
+  color: hsl(7, 20%, 60%);
+  font-size: small;
+  font-weight: 600;
+}
+.cartContent div p span:nth-child(2) {
+  color: hsl(12, 20%, 44%);
+  font-size: small;
+  font-weight: 700;
 }
