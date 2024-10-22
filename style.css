@@ -28,7 +28,7 @@ body {
   margin-top: 20px;
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  padding: 2px 1rem;
+  padding: 1rem 1rem;
 }
 .cartSatus {
   font-weight: 700;
@@ -54,11 +54,14 @@ body {
 }
 .desertsBox {
   width: 100%;
-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   /* display: flex;
   flex-wrap: wrap; */
+}
+
+.cartData{
+  display: none;
 }
 .desertCard {
   width: 16rem;
@@ -98,6 +101,7 @@ body {
   color: hsl(14, 86%, 42%);
   font-weight: 500;
 }
+
 .addToCart {
   display: flex;
   align-items: center;
@@ -142,6 +146,7 @@ body {
   height: 15px;
   display: flex;
   align-items: center;
+  cursor: pointer;
   justify-content: center;
   border: 1px solid hsl(7, 20%, 60%);
   border-radius: 50%;
@@ -171,4 +176,133 @@ body {
   color: hsl(12, 20%, 44%);
   font-size: small;
   font-weight: 700;
+}
+.OrderFooter {
+
+  width: 100%;
+}
+.total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.total p:nth-child(1){
+ font-size: small;
+}
+.total p:nth-child(2){
+  font-weight: 700;
+  font-size: 16px;
+}
+.orderMessage{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(20, 50%, 98%);
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+.orderMessage  p{
+  font-size: small;
+ 
+}
+.orderMessage  p span{
+  font-weight: 600;
+}
+.OrderFooter button{
+  border: none;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 25px;
+  background-color: hsl(14, 86%, 42%);
+  color: white;
+  font-size: small;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 30%;
+ 
+}
+.modal-content h4{
+  font-weight: 800;
+  font-size: x-large;
+  margin-top: 3px;
+}
+.confirmMessage{
+  margin-top: -30px;
+  font-size: small;
+  color: hsl(14, 25%, 72%);
+}
+.checkIcon{
+  width: 25px;
+}
+.checkBox{
+  width: 20px;
+  height: 20px;
+  display: flex;
+  padding: 2px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid hsl(159, 69%, 38%);
+}
+.confirmCartItems{
+   background-color: red;
+  
+}
+.confirmCartItems img{
+  width: 60px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .desertsBox {
+    width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+  
+  }
+  .desertCard {
+    width: 20.5rem;
+    position: relative;
+    margin-right: 0;
+  }
+  .desertCard img {
+    max-width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  .addToCart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-weight: 600;
+    position: absolute;
+    top: 65%;
+    left: 14.5%;
+    cursor: pointer;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 25px;
+    width: 70%;
+    border: 1px solid hsl(7, 20%, 60%);
+  }
 }

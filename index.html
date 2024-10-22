@@ -20,8 +20,8 @@
       </div>
       <div class="cartsContainer">
         <div class="cartsContainerBox">
+          <p  class="cartSatus">Your Cart is (<span id="cartSatus">0</span>)  </p>
           <div class="emptyCartBox">
-            <p class="cartSatus">Your Cart is (0)</p>
             <div>
               <img
                 src="./assets//images/illustration-empty-cart.svg"
@@ -31,31 +31,38 @@
             </div>
           </div>
           <div id="cartData" class="cartData">
-            <p class="cartSatus">Your Cart is (0) </p>
-            
-            <!-- <div class="cart">
-              <p class="productName">Classic Tiramisu</p>
-              <div class="cartContent">
-                <div>
-                  <span class="count">1x</span>
-                  <p>
-                    <span> <span>@</span> $4.50</span> <span>$10.20</span>
-                  </p>
-                </div>
-                <p class="closeIcon">
-                  <img
-                  src="./assets/images/icon-remove-item.svg"
-                  alt="removeIcon"
-                />
-                </p> 
-              </div>
-            </div> -->
+            <div id="cartItems" class="cartItems">
+            </div>
+          <div class="OrderFooter">
+            <div class="total">
+              <p>Order Total</p>
+              <p id="orderTotal">$0</p>
+            </div>
+            <div class="orderMessage">
+               <img src="./assets/images/icon-carbon-neutral.svg" alt="carbon neutral">
+               <p>This is a  <span>carbon-neutral</span> delevery</p>
+            </div>
+            <button id="orderBtn">Confirm Order</button>
+          </div>
           </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script src="index.js"></script>
+    <div id="confirmOrderModal" class="modal" style="display: none;">
+      <div class="modal-content">    
+          <img class="checkIcon" src="./assets//images/icon-order-confirmed.svg" alt="check">  
+        <h4>Order Confirmed</h4>
+        <p class="confirmMessage">We hope you enjoy your food!</p>
+        <div id="cartDataInfo">
+        
+        </div>
+        <button id="confirmBtn">Yes</button>
+        <button id="cancelBtn">No</button>
+        <button>Start New Order</button>
+      </div>
+    </div>
+    <script  src="index.js"></script>
   </body>
 </html>
