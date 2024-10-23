@@ -55,12 +55,16 @@
           <img class="checkIcon" src="./assets//images/icon-order-confirmed.svg" alt="check">  
         <h4>Order Confirmed</h4>
         <p class="confirmMessage">We hope you enjoy your food!</p>
-        <div id="cartDataInfo">
-        
+        <div id="cartDataInfo" class="cartDataInfo">
+          <div id="cartItemsInfo" class="cartItemsInfo">
+          </div>
+          <div class="orderTotalValue">
+            <span class="orderTotalText">Order Total</span>
+            <span class="OrderTotalPriceValue">$${totalPrice}</span>
+          </div> 
         </div>
-        <button id="confirmBtn">Yes</button>
-        <button id="cancelBtn">No</button>
-        <button>Start New Order</button>
+        <button id="cancelBtn">Start New Order</button>
+        </div>
       </div>
     </div>
     <script  src="index.js"></script>

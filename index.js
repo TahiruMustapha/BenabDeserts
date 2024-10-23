@@ -1,16 +1,7 @@
-function saveProducts(product) {
-  localStorage.setItem("cartItems", JSON.stringify(product));
-}
-
 function getProducts() {
   const cartProducts = localStorage.getItem("cartItems");
-
-  if (cartProducts) {
-    return JSON.parse(cartProducts);
-  }
+  return cartProducts ? JSON.parse(cartProducts) : [];
 }
-
-// DOM Elements
 const desertsBoxEl = document.getElementById("desertsBox");
 const cartItemsEl = document.getElementById("cartItems");
 const emptyCartBoxEl = document.querySelector(".emptyCartBox");
@@ -26,6 +17,11 @@ async function fetchProducts() {
     console.error("Error fetching products:", error);
   }
 }
+// saveProducts(products);
+function saveProducts(product) {
+  localStorage.setItem("cartItems", JSON.stringify(product));
+}
+
 let listCards = [];
 function initApp() {
   products.map((desert, index) => {
@@ -45,7 +41,6 @@ function initApp() {
     desertsBoxEl.innerHTML += productHTML;
   });
 }
-
 function addToCart(productId) {
   if (!listCards[productId]) {
     listCards[productId] = { ...products[productId], quantity: 1 };
@@ -55,7 +50,6 @@ function addToCart(productId) {
   saveProducts(listCards);
   reloadProducts();
 }
-
 function generateCartItemHTML(item, index) {
   return `
     <div class="cart">
@@ -65,7 +59,7 @@ function generateCartItemHTML(item, index) {
           <span class="count">${item.quantity}x</span>
           <p>
             <span>@ $${item.price.toFixed(2)}</span>
-            <span>Total: $${(item.price * item.quantity).toFixed(2)}</span> 
+            <span>$${(item.price * item.quantity).toFixed(2)}</span> 
           </p>
         </div>
         <p class="closeIcon" onclick="removeItem(${index})">
@@ -109,11 +103,10 @@ function initCart() {
 }
 initCart();
 fetchProducts();
-
 const cartItem = getProducts();
-
+console.log(cartItem);
 function reloadCartProducts() {
-  const cartData = document.getElementById("cartDataInfo");
+  const cartData = document.getElementById("cartItemsInfo");
   let count = 0;
   let totalPrice = 0;
   cartItem.forEach((item) => {
@@ -123,42 +116,39 @@ function reloadCartProducts() {
       cartData.innerHTML += displayCart(item);
     }
   });
+  document.querySelector(
+    ".OrderTotalPriceValue"
+  ).textContent = `$${totalPrice.toFixed(2)}`;
 }
 function displayCart(item) {
   return `
-  <div class="confirmCartItems">
-  <img src = ${item.image.desktop} alt= "cart Image"/>
-    <div>
-    <p class="productName">${item.category}</p>
-
-    <div>
-        <span class="count">${item.quantity}x</span>
-
-          <p>
-          <span>@ $${item.price.toFixed(2)}</span>
-          <span>Total: $${(item.price * item.quantity).toFixed(2)}</span> 
-        </p>
-      </div>
-
-      <p></p>
-    </div>
-    
-      
-     
-    </div>
+  <div>
+   <div class="confirmCartItems">
+       <div class="confirmCartImg">
+            <img src = ${item.image.desktop} alt= "cart Image"/>
+              <div class="confirmCartText">
+              <span class="productName">${item.category}</span>       
+              <div class="cartPrice">
+                  <span class="count">${item.quantity}x</span>
+                    <span class="price">@ $${item.price.toFixed(2)}</span>
+                </div>                      
+              </div>
+              </div>  
+              <p class="totalPrice">  <span>$${(
+                item.price * item.quantity
+              ).toFixed(2)}</span></p>          
+    </div>    
   </div>`;
 }
 document.getElementById("orderBtn").addEventListener("click", () => {
   document.getElementById("confirmOrderModal").style.display = "flex";
-  reloadCartProducts();
 });
-
+reloadCartProducts();
+window.addEventListener("click", (e) => {
+  if (e.target == document.getElementById("confirmOrderModal")) {
+    document.getElementById("confirmOrderModal").style.display = "none";
+  }
+});
 document.getElementById("cancelBtn").addEventListener("click", () => {
-  document.getElementById("confirmOrderModal").style.display = "none";
-});
-
-document.getElementById("confirmBtn").addEventListener("click", () => {
-  // Proceed with order confirmation logic
-  alert("Order confirmed!");
   document.getElementById("confirmOrderModal").style.display = "none";
 });

@@ -60,7 +60,7 @@ body {
   flex-wrap: wrap; */
 }
 
-.cartData{
+.cartData {
   display: none;
 }
 .desertCard {
@@ -178,7 +178,6 @@ body {
   font-weight: 700;
 }
 .OrderFooter {
-
   width: 100%;
 }
 .total {
@@ -186,14 +185,14 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-.total p:nth-child(1){
- font-size: small;
+.total p:nth-child(1) {
+  font-size: small;
 }
-.total p:nth-child(2){
+.total p:nth-child(2) {
   font-weight: 700;
   font-size: 16px;
 }
-.orderMessage{
+.orderMessage {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -201,14 +200,13 @@ body {
   border-radius: 10px;
   margin-bottom: 25px;
 }
-.orderMessage  p{
+.orderMessage p {
   font-size: small;
- 
 }
-.orderMessage  p span{
+.orderMessage p span {
   font-weight: 600;
 }
-.OrderFooter button{
+.OrderFooter button {
   border: none;
   width: 100%;
   padding: 0.8rem 1rem;
@@ -236,22 +234,32 @@ body {
   padding: 20px;
   border-radius: 8px;
   width: 30%;
- 
 }
-.modal-content h4{
+.modal-content h4 {
   font-weight: 800;
   font-size: x-large;
   margin-top: 3px;
 }
-.confirmMessage{
+.modal-content button{
+  border: none;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 25px;
+  background-color: hsl(14, 86%, 42%);
+  color: white;
+  font-size: small;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.confirmMessage {
   margin-top: -30px;
   font-size: small;
   color: hsl(14, 25%, 72%);
 }
-.checkIcon{
+.checkIcon {
   width: 25px;
 }
-.checkBox{
+.checkBox {
   width: 20px;
   height: 20px;
   display: flex;
@@ -261,23 +269,70 @@ body {
   border-radius: 50%;
   border: 2px solid hsl(159, 69%, 38%);
 }
-.confirmCartItems{
-   background-color: red;
-  
+.cartDataInfo {
+  background-color: hsl(20, 50%, 98%);
+  padding: 12px 13px;
+  border-radius: 8px;
 }
-.confirmCartItems img{
+.confirmCartItems {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0px;
+  border-bottom: 1px solid hsl(13, 31%, 94%);
+}
+.confirmCartImg {
+  display: flex;
+  gap: 10px;
+}
+.confirmCartText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.productName {
+  font-weight: 700;
+  font-size: 14px;
+  color: hsl(14, 65%, 9%);
+}
+.cartPrice {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: small;
+}
+.confirmCartItems img {
   width: 60px;
   object-fit: cover;
+  border-radius: 6px;
 }
-
+.totalPrice {
+  font-weight: 700;
+}
+.orderTotalValue {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.price {
+  color: hsl(7, 20%, 60%);
+}
+.orderTotalText {
+  font-size: small;
+  color: hsl(12, 20%, 44%);
+}
+.OrderTotalPriceValue {
+  font-weight: 700;
+  font-size: 30px;
+}
 @media screen and (max-width: 768px) {
   .desertsBox {
     width: 100%;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .desertCard {
     width: 20.5rem;
