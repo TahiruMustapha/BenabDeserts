@@ -16,9 +16,7 @@ body {
   flex: 2;
 }
 .cartsContainer {
-  /* width: 100%; */
   flex: 1;
-  /* background-color: green; */
   height: fit-content;
   margin-right: 2rem;
 }
@@ -62,6 +60,7 @@ body {
 
 .cartData {
   display: none;
+ 
 }
 .desertCard {
   width: 16rem;
@@ -127,6 +126,7 @@ body {
   height: fit-content;
   display: flex;
   flex-direction: column;
+ 
 }
 .productName {
   margin-bottom: -10px;
@@ -326,6 +326,9 @@ body {
   font-weight: 700;
   font-size: 30px;
 }
+.cartItems{
+  background-color: red;
+}
 @media screen and (max-width: 768px) {
   .desertsBox {
     width: 100%;
@@ -333,11 +336,13 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
   }
   .desertCard {
     width: 20.5rem;
     position: relative;
     margin-right: 0;
+  
   }
   .desertCard img {
     max-width: 100%;
@@ -359,5 +364,10 @@ body {
     border-radius: 25px;
     width: 70%;
     border: 1px solid hsl(7, 20%, 60%);
+    
   }
+  .cartsContainerBox{
+    margin-bottom: 20px;
+  }
+ 
 }
