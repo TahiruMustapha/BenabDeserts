@@ -326,9 +326,7 @@ body {
   font-weight: 700;
   font-size: 30px;
 }
-.cartItems{
-  background-color: red;
-}
+
 @media screen and (max-width: 768px) {
   .desertsBox {
     width: 100%;
