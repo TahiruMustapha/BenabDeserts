@@ -1,46 +1,62 @@
+// Utility functions
 function getProducts() {
   const cartProducts = localStorage.getItem("cartItems");
   return cartProducts ? JSON.parse(cartProducts) : [];
 }
+
+function saveProducts(products) {
+  localStorage.setItem("cartItems", JSON.stringify(products));
+}
+
+// DOM elements
 const desertsBoxEl = document.getElementById("desertsBox");
 const cartItemsEl = document.getElementById("cartItems");
 const emptyCartBoxEl = document.querySelector(".emptyCartBox");
 const cartDataEl = document.getElementById("cartData");
+const orderTotalElement = document.getElementById("orderTotal");
+const cartStatusElement = document.getElementById("cartSatus");
+const confirmOrderModal = document.getElementById("confirmOrderModal");
+const cartItemsInfoEl = document.getElementById("cartItemsInfo");
+const orderBtn = document.getElementById("orderBtn");
+const cancelBtn = document.getElementById("cancelBtn");
+
 let products = [];
+let listCards = [];
+
+// Fetch products data
 async function fetchProducts() {
   try {
     const response = await fetch("./data.json");
-    const data = await response.json();
-    products = data;
+    products = await response.json();
     initApp();
   } catch (error) {
     console.error("Error fetching products:", error);
   }
 }
-// saveProducts(products);
-function saveProducts(product) {
-  localStorage.setItem("cartItems", JSON.stringify(product));
+
+// Initialize the application
+function initApp() {
+  desertsBoxEl.innerHTML = products
+    .map((desert, index) => generateProductHTML(desert, index))
+    .join("");
 }
 
-let listCards = [];
-function initApp() {
-  products.map((desert, index) => {
-    const productHTML = ` 
-      <div class="desertCard">
-        <img src="${desert.image.desktop}" alt="${desert.name}">
-        <div class="desert-data">
-          <span>${desert.name}</span>
-          <span>${desert.category}</span>
-          <span>$${desert.price.toFixed(2)}</span>
-        </div>
-        <button onclick="addToCart(${index})" class="addToCart">
-          <img src="/assets/images/icon-add-to-cart.svg" alt="cartIcon">
-          <span>Add To Cart</span>
-        </button>
-      </div>`;
-    desertsBoxEl.innerHTML += productHTML;
-  });
+function generateProductHTML(desert, index) {
+  return `
+    <div class="desertCard">
+      <img src="${desert.image.desktop}" alt="${desert.name}">
+      <div class="desert-data">
+        <span>${desert.name}</span>
+        <span>${desert.category}</span>
+        <span>$${desert.price.toFixed(2)}</span>
+      </div>
+      <button onclick="addToCart(${index})" class="addToCart">
+        <img src="/assets/images/icon-add-to-cart.svg" alt="cartIcon">
+        <span>Add To Cart</span>
+      </button>
+    </div>`;
 }
+
 function addToCart(productId) {
   if (!listCards[productId]) {
     listCards[productId] = { ...products[productId], quantity: 1 };
@@ -50,6 +66,7 @@ function addToCart(productId) {
   saveProducts(listCards);
   reloadProducts();
 }
+
 function generateCartItemHTML(item, index) {
   return `
     <div class="cart">
@@ -68,14 +85,14 @@ function generateCartItemHTML(item, index) {
       </div>
     </div>`;
 }
+
 function updateCartDisplay(count, totalPrice) {
-  const orderTotalElement = document.getElementById("orderTotal");
-  const cartStatusElement = document.getElementById("cartSatus");
   orderTotalElement.textContent = `$${totalPrice.toLocaleString()}`;
   cartStatusElement.textContent = count;
   cartDataEl.style.display = count > 0 ? "block" : "none";
   emptyCartBoxEl.style.display = count > 0 ? "none" : "block";
 }
+
 function reloadProducts() {
   let count = 0;
   let totalPrice = 0;
@@ -90,10 +107,13 @@ function reloadProducts() {
   updateCartDisplay(count, totalPrice);
   saveProducts(listCards);
 }
+
 function removeItem(productId) {
   listCards[productId] = null;
   reloadProducts();
+  saveProducts(listCards);
 }
+
 function initCart() {
   const savedCart = getProducts();
   if (savedCart) {
@@ -101,19 +121,19 @@ function initCart() {
     reloadProducts();
   }
 }
+// Initialize cart and fetch products
 initCart();
 fetchProducts();
-const cartItem = getProducts();
-console.log(cartItem);
+console.log(listCards)
 function reloadCartProducts() {
-  const cartData = document.getElementById("cartItemsInfo");
   let count = 0;
   let totalPrice = 0;
-  cartItem.forEach((item) => {
+  cartItemsInfoEl.innerHTML = "";
+listCards.forEach((item) => {
     if (item) {
       totalPrice += item.price * item.quantity;
       count += item.quantity;
-      cartData.innerHTML += displayCart(item);
+      cartItemsInfoEl.innerHTML += displayCart(item);
     }
   });
   document.querySelector(
@@ -122,33 +142,38 @@ function reloadCartProducts() {
 }
 function displayCart(item) {
   return `
-  <div>
-   <div class="confirmCartItems">
-       <div class="confirmCartImg">
-            <img src = ${item.image.desktop} alt= "cart Image"/>
-              <div class="confirmCartText">
-              <span class="productName">${item.category}</span>       
-              <div class="cartPrice">
-                  <span class="count">${item.quantity}x</span>
-                    <span class="price">@ $${item.price.toFixed(2)}</span>
-                </div>                      
-              </div>
-              </div>  
-              <p class="totalPrice">  <span>$${(
-                item.price * item.quantity
-              ).toFixed(2)}</span></p>          
-    </div>    
-  </div>`;
+    <div>
+      <div class="confirmCartItems">
+        <div class="confirmCartImg">
+          <img src="${item.image.desktop}" alt="cart Image"/>
+          <div class="confirmCartText">
+            <span class="productName">${item.category}</span>       
+            <div class="cartPrice">
+              <span class="count">${item.quantity}x</span>
+              <span class="price">@ $${item.price.toFixed(2)}</span>
+            </div>                      
+          </div>
+        </div>  
+        <p class="totalPrice">
+          <span>$${(item.price * item.quantity).toFixed(2)}</span>
+        </p>          
+      </div>    
+    </div>`;
 }
-document.getElementById("orderBtn").addEventListener("click", () => {
-  document.getElementById("confirmOrderModal").style.display = "flex";
+// Event Listeners
+orderBtn.addEventListener("click", () => {
+  confirmOrderModal.style.display = "flex";
 });
-reloadCartProducts();
+
 window.addEventListener("click", (e) => {
-  if (e.target == document.getElementById("confirmOrderModal")) {
-    document.getElementById("confirmOrderModal").style.display = "none";
+  if (e.target === confirmOrderModal) {
+    confirmOrderModal.style.display = "none";
   }
 });
-document.getElementById("cancelBtn").addEventListener("click", () => {
-  document.getElementById("confirmOrderModal").style.display = "none";
+
+cancelBtn.addEventListener("click", () => {
+  confirmOrderModal.style.display = "none";
 });
+
+// Reload the cart products on page load
+reloadCartProducts();
